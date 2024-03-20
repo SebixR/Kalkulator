@@ -1,0 +1,32 @@
+[versions]
+agp = "8.3.0"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+appcompat = "1.6.1"
+material = "1.10.0"
+activity = "1.8.0"
+constraintlayout = "2.1.4"
+rhinoAndroid = "1.6.0"
+mathparserOrgMxparser = "5.2.1"
+math = "2023.22"
+mathparser = "1.0.1"
+mathparserOrgMxparserVersion = "5.2.1"
+
+[libraries]
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+rhino-android = { group = "com.faendir.rhino", name = "rhino-android", version.ref = "rhinoAndroid" }
+mathparser-org-mxparser = { group = "org.mariuszgromada.math", name = "mathparser.org-mxparser", version.ref = "mathparserOrgMxparser" }
+math = { group = "com.avito.android", name = "math", version.ref = "math" }
+mathParser = { group = "com.github.meowingtwurtle", name = "mathParser", version.ref = "mathparser" }
+math-MathParser-org-mXparser = { group = "org.mariuszgromada.math", name = "MathParser.org-mXparser", version.ref = "mathparserOrgMxparserVersion" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+
