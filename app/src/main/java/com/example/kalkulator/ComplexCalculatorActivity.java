@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -18,32 +17,19 @@ import org.mariuszgromada.math.mxparser.License;
 
 import java.text.DecimalFormat;
 
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class ComplexCalculatorActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView expressionView, resultView;
-
-    private boolean isComplexView = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.normal);
+        setContentView(R.layout.complex);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        Intent intent = getIntent();
-
-        boolean isComplex = intent.getBooleanExtra("isComplex", false);
-        if (isComplex) {
-            setContentView(R.layout.complex);
-            assignComplexIds();
-            isComplexView = true;
-        }
 
         assignIds();
     }
@@ -93,13 +79,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void handleSwitch() {
-        if (isComplexView) setContentView(R.layout.normal);
-        else {
-            setContentView(R.layout.complex);
-            assignComplexIds();
-        }
-        isComplexView = !isComplexView;
-        assignIds();
+        Intent intent = new Intent(this, SimpleCalculatorActivity.class);
+
+        startActivity(intent);
     }
 
     public void handleSign(StringBuilder expression) {
@@ -159,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (!expression.isEmpty()) {
             boolean isDigit = !Character.isDigit(expression.charAt(expression.length() - 1));
             if ((buttonId == R.id.buttonAdd || buttonId == R.id.buttonSubtract || buttonId == R.id.buttonMultiply || buttonId == R.id.buttonDivide)
-                && isDigit && expression.charAt(expression.length() - 1) != 'e' && expression.charAt(expression.length() - 1) != ')'
+                    && isDigit && expression.charAt(expression.length() - 1) != 'e' && expression.charAt(expression.length() - 1) != ')'
                     && expression.charAt(expression.length() - 1) != '(' && expression.charAt(expression.length() - 1) != '%') {
                 return false;
             }
@@ -222,11 +204,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         assignId(R.id.button8);
         assignId(R.id.button9);
         assignId(R.id.button0);
-    }
-
-    public void assignComplexIds() {
-        resultView = findViewById(R.id.resultView);
-        expressionView = findViewById(R.id.expressionView);
 
         assignId(R.id.buttonSin);
         assignId(R.id.buttonCos);

@@ -16,7 +16,10 @@
             android:name=".AboutActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".SimpleCalculatorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ComplexCalculatorActivity"
             android:exported="false" />
         <activity
             android:name=".MenuActivity"

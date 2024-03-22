@@ -3,7 +3,6 @@ package com.example.kalkulator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
@@ -34,19 +33,13 @@ public class MenuActivity extends AppCompatActivity {
 
 
     public void goToNormal(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-
-        boolean isComplex = false;
-        intent.putExtra("isComplex", isComplex);
+        Intent intent = new Intent(this, SimpleCalculatorActivity.class);
 
         startActivity(intent);
     }
 
     public void goToAdvanced(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-
-        boolean isComplex = true;
-        intent.putExtra("isComplex", isComplex);
+        Intent intent = new Intent(this, ComplexCalculatorActivity.class);
 
         startActivity(intent);
     }
