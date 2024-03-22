@@ -16,6 +16,7 @@ import org.mariuszgromada.math.mxparser.Expression;
 import org.mariuszgromada.math.mxparser.License;
 
 import java.text.DecimalFormat;
+import java.util.Locale;
 
 public class ComplexCalculatorActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -142,7 +143,8 @@ public class ComplexCalculatorActivity extends AppCompatActivity implements View
             boolean isDigit = !Character.isDigit(expression.charAt(expression.length() - 1));
             if ((buttonId == R.id.buttonAdd || buttonId == R.id.buttonSubtract || buttonId == R.id.buttonMultiply || buttonId == R.id.buttonDivide)
                     && isDigit && expression.charAt(expression.length() - 1) != 'e' && expression.charAt(expression.length() - 1) != ')'
-                    && expression.charAt(expression.length() - 1) != '(' && expression.charAt(expression.length() - 1) != '%') {
+                    && expression.charAt(expression.length() - 1) != '(' && expression.charAt(expression.length() - 1) != '%'
+                    && expression.charAt(expression.length() - 1) != '!' && expression.charAt(expression.length() - 1) != 'π') {
                 return false;
             }
             else return true;
@@ -166,11 +168,14 @@ public class ComplexCalculatorActivity extends AppCompatActivity implements View
 
             DecimalFormat df = new DecimalFormat("#.########");
             String result = df.format(number);
+            if (result.equals("NaN")) {
+                return "Error";
+            }
             if (result.endsWith(".0")) {
                 result = result.substring(0, result.length() - 2);
             }
-            if (result.equals("NaN")) {
-                return "Error";
+            if (result.length() > 10) {
+                result = String.format(Locale.US, "%.4E", number);
             }
             return result;
         } catch (Exception e) {
@@ -216,5 +221,19 @@ public class ComplexCalculatorActivity extends AppCompatActivity implements View
         assignId(R.id.buttonLog);
         assignId(R.id.buttonLn);
         assignId(R.id.buttonPercent);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putString("result", resultView.getText().toString());
+        outState.putString("expression", expressionView.getText().toString());
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        resultView.setText(savedInstanceState.getString("result"));
+        expressionView.setText(savedInstanceState.getString("expression"));
+        super.onRestoreInstanceState(savedInstanceState);
     }
 }
