@@ -15,15 +15,20 @@ import java.util.Locale;
 public class AppLogic {
 
     private MaterialButton button;
-    private StringBuilder expression = new StringBuilder();
+    private StringBuilder expression;
     TextView resultView;
 
-    public AppLogic(TextView resultView) {
+    public AppLogic(TextView resultView, String expression) {
         this.resultView = resultView;
+        this.expression = new StringBuilder(expression);
     }
 
     public void setButton(View view) {
         this.button = (MaterialButton) view;
+    }
+
+    public void setExpression(String expression) {
+        this.expression.replace(0, this.expression.length(), expression);
     }
 
     public StringBuilder handleClick() {

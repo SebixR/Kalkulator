@@ -22,7 +22,7 @@ import java.util.Locale;
 public class SimpleCalculatorActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView expressionView, resultView;
-    private StringBuilder expression = new StringBuilder();
+    private StringBuilder expression;
     private AppLogic appLogic;
 
     @Override
@@ -36,20 +36,15 @@ public class SimpleCalculatorActivity extends AppCompatActivity implements View.
         });
 
         assignIds();
-        appLogic = new AppLogic(resultView);
-    }
-
-    public void assignId(int id) {
-        MaterialButton button = findViewById(id);
-        button.setOnClickListener(this);
+        appLogic = new AppLogic(resultView, expressionView.getText().toString());
+        expression = new StringBuilder();
     }
 
     @Override
     public void onClick(View view) {
         MaterialButton button = (MaterialButton) view;
         appLogic.setButton(view);
-
-        expression.replace(0, expression.length(), expressionView.getText().toString());
+        appLogic.setExpression(expressionView.getText().toString());
 
         if (button.getId() == R.id.buttonSwitch) {
             handleSwitch();
@@ -66,6 +61,10 @@ public class SimpleCalculatorActivity extends AppCompatActivity implements View.
         startActivity(intent);
     }
 
+    public void assignId(int id) {
+        MaterialButton button = findViewById(id);
+        button.setOnClickListener(this);
+    }
 
     public void assignIds()
     {

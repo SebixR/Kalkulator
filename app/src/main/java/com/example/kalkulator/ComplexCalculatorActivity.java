@@ -21,7 +21,7 @@ import java.util.Locale;
 public class ComplexCalculatorActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView expressionView, resultView;
-    private StringBuilder expression = new StringBuilder();
+    private StringBuilder expression;
     private AppLogic appLogic;
 
     @Override
@@ -35,7 +35,8 @@ public class ComplexCalculatorActivity extends AppCompatActivity implements View
         });
 
         assignIds();
-        appLogic = new AppLogic(resultView);
+        appLogic = new AppLogic(resultView, expressionView.getText().toString());
+        expression = new StringBuilder();
     }
 
     public void assignId(int id) {
@@ -47,8 +48,7 @@ public class ComplexCalculatorActivity extends AppCompatActivity implements View
     public void onClick(View view) {
         MaterialButton button = (MaterialButton) view;
         appLogic.setButton(view);
-
-        expression.replace(0, expression.length(), expressionView.getText().toString());
+        appLogic.setExpression(expressionView.getText().toString());
 
         if (button.getId() == R.id.buttonSwitch) {
             handleSwitch();
