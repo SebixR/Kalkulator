@@ -62,9 +62,7 @@ public class AppLogic {
     public void handleSign(StringBuilder expression) {
         if (expression.length() > 0) {
             for (int i = expression.length() - 1; i >= 0; i--) {
-                if (expression.charAt(i) == '+' || expression.charAt(i) == '-' || expression.charAt(i) == '/'
-                        || expression.charAt(i) == '*' || expression.charAt(i) == '%'  || expression.charAt(i) == '√'
-                        || i == 0) {
+                if (expression.charAt(i) == '+' || expression.charAt(i) == '-' || i == 0) {
                     if (expression.charAt(i) == '-') expression.setCharAt(i, '+');
                     else if (expression.charAt(i) == '+') expression.setCharAt(i, '-');
                     else expression.insert(i, '-');
