@@ -40,6 +40,8 @@ public class AppLogic {
             resultView.setText("0");
         } else if (button.getId() == R.id.buttonSign) {
             handleSign(expression);
+        }else if (button.getId() == R.id.buttonComma) {
+            expression = handleComma(expression);
         } else if (button.getId() == R.id.buttonBack && (expression.length() > 0)) {
             expression = handleBack(expression);
         } else if (button.getId() == R.id.buttonEquals) {
@@ -62,14 +64,38 @@ public class AppLogic {
     public void handleSign(StringBuilder expression) {
         if (expression.length() > 0) {
             for (int i = expression.length() - 1; i >= 0; i--) {
-                if (expression.charAt(i) == '+' || expression.charAt(i) == '-' || i == 0) {
-                    if (expression.charAt(i) == '-') expression.setCharAt(i, '+');
-                    else if (expression.charAt(i) == '+') expression.setCharAt(i, '-');
-                    else expression.insert(i, '-');
+                if (Character.isDigit(expression.charAt(i)) || expression.charAt(i) == 'π')
+                {
+                    while (i >= 0 && (Character.isDigit(expression.charAt(i)) || expression.charAt(i) == 'π')) {
+                        i--;
+                    }
+                    if (i >= 0) {
+                        if (expression.charAt(i) == '-') expression.setCharAt(i, '+');
+                        else if (expression.charAt(i) == '+') expression.setCharAt(i, '-');
+                        else expression.insert(i + 1, '-');
+                        break;
+                    }
+                    else expression.insert(0, '-');
+                }
+            }
+
+        }
+    }
+
+    public StringBuilder handleComma(StringBuilder expression) {
+        if (expression.length() > 0) {
+            boolean isDot = false;
+            for (int i = expression.length() - 1; i >= 0 && (Character.isDigit(expression.charAt(i)) || expression.charAt(i) == '.'); i--) {
+                if (expression.charAt(i) == '.') {
+                    isDot = true;
                     break;
                 }
             }
+            if (Character.isDigit(expression.charAt(expression.length() - 1)) && !isDot) {
+                expression.append(".");
+            }
         }
+        return expression;
     }
 
     public StringBuilder handleBack(StringBuilder expression) {
