@@ -36,6 +36,15 @@ public class SimpleCalculatorActivity extends AppCompatActivity implements View.
         });
 
         assignIds();
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String expression = extras.getString("expression");
+            String result = extras.getString("result");
+            expressionView.setText(expression);
+            resultView.setText(result);
+        }
+
         appLogic = new AppLogic(resultView, expressionView.getText().toString());
         expression = new StringBuilder();
     }
@@ -58,7 +67,11 @@ public class SimpleCalculatorActivity extends AppCompatActivity implements View.
     public void handleSwitch() {
         Intent intent = new Intent(this, ComplexCalculatorActivity.class);
 
+        intent.putExtra("expression", expressionView.getText().toString());
+        intent.putExtra("result", resultView.getText().toString());
+
         startActivity(intent);
+        finish();
     }
 
     public void assignId(int id) {

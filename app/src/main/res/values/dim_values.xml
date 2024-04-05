@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="small_normal_button_font">20sp</dimen>
+    <dimen name="small_complex_button_font">18sp</dimen>
+    <dimen name="large_normal_button_font">36sp</dimen>
+    <dimen name="large_complex_button_font">28sp</dimen>
+
+    <dimen name="small_result_font">46sp</dimen>
+    <dimen name="small_expression_font">36sp</dimen>
+
+    <dimen name="large_result_font">72sp</dimen>
+    <dimen name="large_expression_font">56sp</dimen>
+
+    <dimen name="small_text_size">20sp</dimen>
+    <dimen name="large_text_size">36sp</dimen>
+
+</resources>

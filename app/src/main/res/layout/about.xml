@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title"
-            android:textSize="20sp"
+            android:textSize="@dimen/small_text_size"
             android:textColor="#FFFF9800"
             android:layout_margin="6dp"/>
 
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/author"
-            android:textSize="20sp"
+            android:textSize="@dimen/small_text_size"
             android:textColor="#FFFF9800"
             android:layout_margin="6dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/back"
-        android:textSize="20sp"
+        android:textSize="@dimen/small_text_size"
         android:textColor="@color/white"
         android:backgroundTint="#FFFF9800"
         app:cornerRadius="12dp"
